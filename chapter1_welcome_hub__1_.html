@@ -1,929 +1,1026 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapter 1: Your Journey to AI Mastery | Quanskill</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --quanskill-blue: #0b2fa0;
-            --quanskill-blue-dark: #081f6b;
-            --quanskill-blue-light: #1a4fd0;
-            --quanskill-orange: #ff9000;
-            --quanskill-orange-dark: #e68200;
-            --quanskill-orange-light: #ffab33;
-            --text-primary: #1a1a2e;
-            --text-secondary: #4a4a6a;
-            --bg-primary: #fafbff;
-            --bg-secondary: #ffffff;
-            --bg-card: #ffffff;
-            --border-color: #e8eaf6;
-            --code-bg: #f5f7ff;
-            --success: #10b981;
-            --error: #ef4444;
-            --ml-accent: #7c3aed;
-            --gradient-blue: linear-gradient(135deg, #0b2fa0 0%, #1a4fd0 100%);
-            --gradient-orange: linear-gradient(135deg, #ff9000 0%, #ffab33 100%);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Source Serif 4', Georgia, serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.7;
-            font-size: 16px;
-        }
-
-        .header {
-            background: var(--gradient-blue);
-            color: white;
-            padding: 0.75rem 2rem;
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(11, 47, 160, 0.3);
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header-logo {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 1.3rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .header-logo-icon {
-            width: 28px; height: 28px;
-            background: var(--quanskill-orange);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-        }
-
-        .header-nav {
-            display: flex;
-            gap: 1.5rem;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.85rem;
-        }
-
-        .header-nav a {
-            color: rgba(255,255,255,0.85);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .header-nav a:hover { color: var(--quanskill-orange); }
-
-        .main-content {
-            padding: 70px 2rem 3rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        /* Hero */
-        .hero {
-            background: var(--gradient-blue);
-            color: white;
-            padding: 2.5rem;
-            border-radius: 16px;
-            margin-bottom: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%; right: -20%;
-            width: 300px; height: 300px;
-            background: var(--quanskill-orange);
-            border-radius: 50%;
-            opacity: 0.1;
-        }
-
-        .hero-badge {
-            display: inline-block;
-            background: var(--quanskill-orange);
-            color: white;
-            padding: 0.3rem 0.9rem;
-            border-radius: 20px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-        }
-
-        .hero h1 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            line-height: 1.2;
-            position: relative;
-        }
-
-        .hero h1 .highlight { color: var(--quanskill-orange); }
-
-        .hero-subtitle {
-            font-size: 1rem;
-            opacity: 0.9;
-            max-width: 600px;
-            line-height: 1.6;
-            position: relative;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 2rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-            position: relative;
-        }
-
-        .hero-stat {
-            text-align: center;
-            background: rgba(255,255,255,0.1);
-            padding: 0.75rem 1.25rem;
-            border-radius: 10px;
-        }
-
-        .hero-stat-value {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--quanskill-orange);
-            display: block;
-        }
-
-        .hero-stat-label {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.7rem;
-            opacity: 0.85;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* Sections */
-        .section {
-            background: var(--bg-card);
-            border-radius: 14px;
-            padding: 1.75rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid var(--border-color);
-        }
-
-        .section-icon {
-            width: 40px; height: 40px;
-            background: var(--gradient-orange);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        .section-header h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--quanskill-blue);
-        }
-
-        /* Career Cards */
-        .pathway-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .pathway-card {
-            background: var(--code-bg);
-            border-radius: 12px;
-            padding: 1.25rem;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .pathway-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(11, 47, 160, 0.12);
-            border-color: var(--quanskill-blue);
-        }
-
-        .pathway-icon {
-            font-size: 1.75rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .pathway-card h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--quanskill-blue);
-            margin-bottom: 0.35rem;
-        }
-
-        .pathway-card p {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            line-height: 1.5;
-        }
-
-        .pathway-tag {
-            display: inline-block;
-            background: rgba(11, 47, 160, 0.1);
-            color: var(--quanskill-blue);
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 600;
-            margin-top: 0.5rem;
-        }
-
-        .pathway-tag.hot {
-            background: rgba(255, 144, 0, 0.15);
-            color: var(--quanskill-orange-dark);
-        }
-
-        /* Why Math */
-        .math-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .math-item {
-            display: flex;
-            gap: 0.75rem;
-            padding: 1rem;
-            background: var(--code-bg);
-            border-radius: 10px;
-            border-left: 3px solid var(--quanskill-orange);
-        }
-
-        .math-item-icon {
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-
-        .math-item h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--quanskill-blue);
-            margin-bottom: 0.2rem;
-        }
-
-        .math-item p {
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            line-height: 1.5;
-        }
-
-        /* Quanskill Pathway */
-        .quanskill-box {
-            background: var(--gradient-blue);
-            color: white;
-            padding: 2rem;
-            border-radius: 14px;
-            margin-bottom: 1.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .quanskill-box::before {
-            content: '';
-            position: absolute;
-            top: -50px; right: -50px;
-            width: 150px; height: 150px;
-            background: var(--quanskill-orange);
-            border-radius: 50%;
-            opacity: 0.15;
-        }
-
-        .quanskill-box h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            position: relative;
-        }
-
-        .quanskill-box > p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .pathway-steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.75rem;
-            position: relative;
-        }
-
-        .pathway-step {
-            background: rgba(255,255,255,0.1);
-            padding: 1rem;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .pathway-step-num {
-            width: 28px; height: 28px;
-            background: var(--quanskill-orange);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 0.85rem;
-            margin: 0 auto 0.5rem;
-        }
-
-        .pathway-step h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .pathway-step p {
-            font-size: 0.7rem;
-            opacity: 0.8;
-        }
-
-        /* Roadmap Timeline */
-        .roadmap-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
-            margin-top: 1rem;
-        }
-
-        .roadmap-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.75rem 1rem;
-            background: var(--code-bg);
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            transition: all 0.2s;
-        }
-
-        .roadmap-item:hover {
-            border-color: var(--quanskill-orange);
-            background: white;
-        }
-
-        .roadmap-icon {
-            width: 36px; height: 36px;
-            background: var(--gradient-orange);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-
-        .roadmap-content h4 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--quanskill-blue);
-        }
-
-        .roadmap-content p {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-
-        .roadmap-chapter {
-            background: var(--quanskill-blue);
-            color: white;
-            padding: 0.15rem 0.5rem;
-            border-radius: 8px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.65rem;
-            font-weight: 600;
-            margin-left: auto;
-            flex-shrink: 0;
-        }
-
-        /* Trends */
-        .trends-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .trend-card {
-            background: var(--gradient-blue);
-            color: white;
-            padding: 1.25rem;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .trend-card .value {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--quanskill-orange);
-            display: block;
-        }
-
-        .trend-card .label {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.75rem;
-            opacity: 0.9;
-        }
-
-        /* CTA */
-        .cta-box {
-            background: var(--gradient-orange);
-            color: white;
-            padding: 2rem;
-            border-radius: 14px;
-            text-align: center;
-            margin-top: 1.5rem;
-        }
-
-        .cta-box h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .cta-box p {
-            font-size: 0.95rem;
-            opacity: 0.95;
-            margin-bottom: 1.25rem;
-        }
-
-        .chapter-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
-        }
-
-        .chapter-link {
-            background: rgba(255,255,255,0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            text-decoration: none;
-            color: white;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-
-        .chapter-link:hover {
-            background: white;
-            color: var(--quanskill-orange);
-        }
-
-        /* Quote */
-        .quote-box {
-            background: linear-gradient(135deg, rgba(11, 47, 160, 0.08) 0%, rgba(255, 144, 0, 0.08) 100%);
-            border-left: 4px solid var(--quanskill-orange);
-            padding: 1.25rem 1.5rem;
-            border-radius: 0 12px 12px 0;
-            margin: 1.5rem 0;
-        }
-
-        .quote-box p {
-            font-size: 1.05rem;
-            font-style: italic;
-            color: var(--text-primary);
-        }
-
-        .quote-box cite {
-            display: block;
-            margin-top: 0.5rem;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.8rem;
-            font-style: normal;
-            color: var(--quanskill-blue);
-            font-weight: 600;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 1.5rem; }
-            .hero-stats { gap: 1rem; }
-            .math-grid { grid-template-columns: 1fr; }
-            .pathway-steps { grid-template-columns: repeat(2, 1fr); }
-            .roadmap-grid { grid-template-columns: 1fr; }
-            .trends-grid { grid-template-columns: repeat(2, 1fr); }
-            .header-nav { display: none; }
-        }
-    
-        /* Floating Back to Main Button */
-        .floating-back-btn {
-            position: fixed;
-            top: 75px;
-            left: 15px;
-            background: linear-gradient(135deg, #0b2fa0 0%, #1a4fd0 100%);
-            color: white !important;
-            padding: 0.6rem 1.2rem;
-            border-radius: 25px;
-            text-decoration: none !important;
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
-            font-size: 0.85rem;
-            z-index: 9999;
-            box-shadow: 0 4px 15px rgba(11, 47, 160, 0.3);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .floating-back-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(11, 47, 160, 0.4);
-            background: linear-gradient(135deg, #ff9000 0%, #e68200 100%);
-        }
-        @media (max-width: 900px) {
-            .floating-back-btn {
-                top: auto;
-                bottom: 20px;
-                left: 15px;
-                right: auto;
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Floating Back to Main Page Button -->
-    <a href="index.html" class="floating-back-btn">← Main Page</a>
-
-    <header class="header">
-        <div class="header-content">
-            <div class="header-logo">
-                <div class="header-logo-icon">Q</div>
-                <span>Quanskill</span>
-            </div>
-            <nav class="header-nav">
-                <a href="#pathways">Careers</a>
-                <a href="#why-math">Why Math</a>
-                <a href="#roadmap">Roadmap</a>
-                <a href="#trends">Trends</a>
-                <a href="#start">Start</a>
-            </nav>
-        </div>
-    </header>
-
-    <main class="main-content">
-        <!-- Hero -->
-        <section class="hero">
-            <span class="hero-badge">📘 Chapter 1</span>
-            <h1>Master <span class="highlight">Mathematics</span>, Build the <span class="highlight">Future of AI</span></h1>
-            <p class="hero-subtitle">Transform from aspiring learner to AI professional. Master the mathematical foundations that power Data Science, Machine Learning, and Agentic AI systems.</p>
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <span class="hero-stat-value">35%</span>
-                    <span class="hero-stat-label">Job Growth by 2033</span>
-                </div>
-                <div class="hero-stat">
-                    <span class="hero-stat-value">1.6M+</span>
-                    <span class="hero-stat-label">Global ML Jobs</span>
-                </div>
-                <div class="hero-stat">
-                    <span class="hero-stat-value">350%</span>
-                    <span class="hero-stat-label">ML Role Growth</span>
-                </div>
-                <div class="hero-stat">
-                    <span class="hero-stat-value">#4</span>
-                    <span class="hero-stat-label">Best Tech Career</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Career Pathways -->
-        <section class="section" id="pathways">
-            <div class="section-header">
-                <div class="section-icon">🚀</div>
-                <h2>Career Pathways in AI & Data Science</h2>
-            </div>
-            <p>The AI revolution is creating unprecedented career opportunities. Here are the most in-demand roles:</p>
-            <div class="pathway-grid">
-                <div class="pathway-card">
-                    <div class="pathway-icon">🧠</div>
-                    <h3>Data Scientist</h3>
-                    <p>Turn data into actionable insights using statistics, ML, and domain expertise.</p>
-                    <span class="pathway-tag">High Demand</span>
-                </div>
-                <div class="pathway-card">
-                    <div class="pathway-icon">âš™ï¸</div>
-                    <h3>ML Engineer</h3>
-                    <p>Build, deploy, and optimize ML models at scale for production systems.</p>
-                    <span class="pathway-tag hot">350% Growth</span>
-                </div>
-                <div class="pathway-card">
-                    <div class="pathway-icon">🤓</div>
-                    <h3>AI Engineer</h3>
-                    <p>Design intelligent systems, integrate LLMs, and build AI-powered products.</p>
-                    <span class="pathway-tag hot">Hottest Role 2025</span>
-                </div>
-                <div class="pathway-card">
-                    <div class="pathway-icon">🔔</div>
-                    <h3>Agentic AI Developer</h3>
-                    <p>Build autonomous AI agents that reason, plan, and execute complex tasks.</p>
-                    <span class="pathway-tag hot">🔥 Emerging</span>
-                </div>
-                <div class="pathway-card">
-                    <div class="pathway-icon">🏔ï¸</div>
-                    <h3>Data Engineer</h3>
-                    <p>Build the data infrastructure and pipelines that power AI systems.</p>
-                    <span class="pathway-tag">Foundation Role</span>
-                </div>
-                <div class="pathway-card">
-                    <div class="pathway-icon">📊</div>
-                    <h3>Data Analyst</h3>
-                    <p>Extract insights from data to drive business decisions. Gateway to AI.</p>
-                    <span class="pathway-tag">Entry Point</span>
-                </div>
-                <div class="pathway-card">
-                    <div class="pathway-icon">🔬</div>
-                    <h3>AI Researcher</h3>
-                    <p>Push boundaries of what's possible. Develop new algorithms and architectures.</p>
-                    <span class="pathway-tag">Elite Tier</span>
-                </div>
-                <div class="pathway-card">
-                    <div class="pathway-icon">â˜ï¸</div>
-                    <h3>MLOps Engineer</h3>
-                    <p>Operationalize ML at scale. CI/CD for models, monitoring, automation.</p>
-                    <span class="pathway-tag hot">High Demand</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Why Mathematics -->
-        <section class="section" id="why-math">
-            <div class="section-header">
-                <div class="section-icon">📐</div>
-                <h2>Why Mathematics is Your Superpower</h2>
-            </div>
-            <div class="quote-box">
-                <p>"Mathematics is the language in which God has written the universe."</p>
-                <cite>— Galileo Galilei</cite>
-            </div>
-            <p>In the age of AI, mathematics isn't just useful—it's essential. Every breakthrough in machine learning is built on mathematical foundations.</p>
-            <div class="math-grid">
-                <div class="math-item">
-                    <div class="math-item-icon">🔍</div>
-                    <div>
-                        <h4>Understand, Don't Just Use</h4>
-                        <p>Math lets you understand WHY algorithms work, debug when they fail, and innovate beyond existing tools.</p>
-                    </div>
-                </div>
-                <div class="math-item">
-                    <div class="math-item-icon">🚀</div>
-                    <div>
-                        <h4>Career Differentiation</h4>
-                        <p>Mathematical fluency separates senior engineers from juniors—and opens doors to top-tier positions.</p>
-                    </div>
-                </div>
-                <div class="math-item">
-                    <div class="math-item-icon">🤓</div>
-                    <div>
-                        <h4>Build Agentic AI</h4>
-                        <p>Autonomous agents require probabilistic reasoning, optimization, and decision theory.</p>
-                    </div>
-                </div>
-                <div class="math-item">
-                    <div class="math-item-icon">🔮</div>
-                    <div>
-                        <h4>Future-Proof Your Skills</h4>
-                        <p>Frameworks change. APIs deprecate. Mathematical principles are eternal.</p>
-                    </div>
-                </div>
-                <div class="math-item">
-                    <div class="math-item-icon">📊</div>
-                    <div>
-                        <h4>Read Research Papers</h4>
-                        <p>AI moves fast. Math fluency lets you read and implement cutting-edge research.</p>
-                    </div>
-                </div>
-                <div class="math-item">
-                    <div class="math-item-icon">💡</div>
-                    <div>
-                        <h4>Innovate & Create</h4>
-                        <p>Every major AI breakthrough—transformers, GANs, diffusion—came from mathematical insight.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Quanskill Pathway -->
-        <div class="quanskill-box">
-            <h2>🎓 The Quanskill Learning Pathway</h2>
-            <p>Our structured curriculum takes you from mathematical foundations to building production-ready AI agents.</p>
-            <div class="pathway-steps">
-                <div class="pathway-step">
-                    <div class="pathway-step-num">1</div>
-                    <h4>Math Foundations</h4>
-                    <p>Linear Algebra, Calculus, Probability</p>
-                </div>
-                <div class="pathway-step">
-                    <div class="pathway-step-num">2</div>
-                    <h4>Core ML</h4>
-                    <p>Regression, PCA, GMM, SVM</p>
-                </div>
-                <div class="pathway-step">
-                    <div class="pathway-step-num">3</div>
-                    <h4>Applied AI</h4>
-                    <p>NLP, Vision, Deep Learning</p>
-                </div>
-                <div class="pathway-step">
-                    <div class="pathway-step-num">4</div>
-                    <h4>Agentic AI</h4>
-                    <p>LangChain, Multi-Agent, MCP</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Learning Roadmap -->
-        <section class="section" id="roadmap">
-            <div class="section-header">
-                <div class="section-icon">🗺ï¸</div>
-                <h2>Your Mathematics Learning Roadmap</h2>
-            </div>
-            <p>Follow this sequence. Each chapter builds on the previous, creating a solid foundation for advanced AI work.</p>
-            <div class="roadmap-grid">
-                <div class="roadmap-item">
-                    <div class="roadmap-icon">📐</div>
-                    <div class="roadmap-content">
-                        <h4>Linear Algebra</h4>
-                        <p>Vectors, matrices, transformations</p>
-                    </div>
-                    <span class="roadmap-chapter">Ch 2</span>
-                </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-icon">🔢</div>
-                    <div class="roadmap-content">
-                        <h4>Matrix Decompositions</h4>
-                        <p>SVD, eigendecomposition, Cholesky</p>
-                    </div>
-                    <span class="roadmap-chapter">Ch 4</span>
-                </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-icon">📈</div>
-                    <div class="roadmap-content">
-                        <h4>Vector Calculus</h4>
-                        <p>Gradients, Jacobians, Hessians</p>
-                    </div>
-                    <span class="roadmap-chapter">Ch 5</span>
-                </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-icon">🏠</div>
-                    <div class="roadmap-content">
-                        <h4>Probability & Distributions</h4>
-                        <p>Bayes, Gaussian, expectations</p>
-                    </div>
-                    <span class="roadmap-chapter">Ch 6</span>
-                </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-icon">âš¡</div>
-                    <div class="roadmap-content">
-                        <h4>Continuous Optimization</h4>
-                        <p>Gradient descent, convexity</p>
-                    </div>
-                    <span class="roadmap-chapter">Ch 7</span>
-                </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-icon">🎯</div>
-                    <div class="roadmap-content">
-                        <h4>When Models Meet Data</h4>
-                        <p>Bias-variance, regularization</p>
-                    </div>
-                    <span class="roadmap-chapter">Ch 8</span>
-                </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-icon">📊</div>
-                    <div class="roadmap-content">
-                        <h4>Linear Regression</h4>
-                        <p>MLE, MAP, Bayesian regression</p>
-                    </div>
-                    <span class="roadmap-chapter">Ch 9</span>
-                </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-icon">🔻</div>
-                    <div class="roadmap-content">
-                        <h4>Dimensionality Reduction</h4>
-                        <p>PCA, variance maximization</p>
-                    </div>
-                    <span class="roadmap-chapter">Ch 10</span>
-                </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-icon">🚀</div>
-                    <div class="roadmap-content">
-                        <h4>Density Estimation</h4>
-                        <p>GMM, EM algorithm</p>
-                    </div>
-                    <span class="roadmap-chapter">Ch 11</span>
-                </div>
-                <div class="roadmap-item">
-                    <div class="roadmap-icon">âš”ï¸</div>
-                    <div class="roadmap-content">
-                        <h4>Classification (SVM)</h4>
-                        <p>Margins, kernels, dual</p>
-                    </div>
-                    <span class="roadmap-chapter">Ch 12</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Global Trends -->
-        <section class="section" id="trends">
-            <div class="section-header">
-                <div class="section-icon">🎁</div>
-                <h2>Global AI/ML Career Trends 2025</h2>
-            </div>
-            <div class="trends-grid">
-                <div class="trend-card">
-                    <span class="value">35%</span>
-                    <span class="label">Job Growth (2022-2033)</span>
-                </div>
-                <div class="trend-card">
-                    <span class="value">$503B</span>
-                    <span class="label">ML Market by 2030</span>
-                </div>
-                <div class="trend-card">
-                    <span class="value">77%</span>
-                    <span class="label">AI Jobs Need ML Skills</span>
-                </div>
-                <div class="trend-card">
-                    <span class="value">220K</span>
-                    <span class="label">US Data Science Jobs</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="cta-box" id="start">
-            <h2>🚀 Ready to Begin?</h2>
-            <p>Start your journey through the Mathematics for Machine Learning practice hubs.</p>
-            <div class="chapter-links">
-                <a href="#" class="chapter-link">📐 Ch 2</a>
-                <a href="#" class="chapter-link">🔢 Ch 4</a>
-                <a href="#" class="chapter-link">📈 Ch 5</a>
-                <a href="#" class="chapter-link">🏠 Ch 6</a>
-                <a href="#" class="chapter-link">âš¡ Ch 7</a>
-                <a href="#" class="chapter-link">🎯 Ch 8</a>
-                <a href="#" class="chapter-link">📊 Ch 9</a>
-                <a href="#" class="chapter-link">🔻 Ch 10</a>
-                <a href="#" class="chapter-link">🚀 Ch 11</a>
-                <a href="#" class="chapter-link">âš”ï¸ Ch 12</a>
-            </div>
-        </section>
-
-        <!-- Final Quote -->
-        <div class="quote-box" style="margin-top: 1.5rem;">
-            <p>"The best time to plant a tree was 20 years ago. The second best time is now."</p>
-            <cite>— Chinese Proverb</cite>
-        </div>
-    </main>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Chapter 1: Your Journey to AI Mastery | Quanskill</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap"
+			rel="stylesheet" />
+		<style>
+			:root {
+				--quanskill-blue: #0b2fa0;
+				--quanskill-blue-dark: #081f6b;
+				--quanskill-blue-light: #1a4fd0;
+				--quanskill-orange: #ff9000;
+				--quanskill-orange-dark: #e68200;
+				--quanskill-orange-light: #ffab33;
+				--text-primary: #1a1a2e;
+				--text-secondary: #4a4a6a;
+				--bg-primary: #fafbff;
+				--bg-secondary: #ffffff;
+				--bg-card: #ffffff;
+				--border-color: #e8eaf6;
+				--code-bg: #f5f7ff;
+				--success: #10b981;
+				--error: #ef4444;
+				--ml-accent: #7c3aed;
+				--gradient-blue: linear-gradient(135deg, #0b2fa0 0%, #1a4fd0 100%);
+				--gradient-orange: linear-gradient(135deg, #ff9000 0%, #ffab33 100%);
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: "Source Serif 4", Georgia, serif;
+				background: var(--bg-primary);
+				color: var(--text-primary);
+				line-height: 1.7;
+				font-size: 16px;
+			}
+
+			.header {
+				background: var(--gradient-blue);
+				color: white;
+				padding: 0.75rem 2rem;
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				z-index: 1000;
+				box-shadow: 0 4px 20px rgba(11, 47, 160, 0.3);
+			}
+
+			.header-content {
+				max-width: 1200px;
+				margin: 0 auto;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.logo {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				color: var(--white);
+				font-weight: 700;
+				font-size: 1.5rem;
+			}
+			.logo img {
+				height: 50px;
+				border-radius: 8px;
+			}
+
+			.header-nav {
+				display: flex;
+				gap: 1.5rem;
+				font-family: "Space Grotesk", sans-serif;
+				font-size: 0.85rem;
+			}
+
+			.header-nav a {
+				color: rgba(255, 255, 255, 0.85);
+				text-decoration: none;
+				transition: color 0.2s;
+			}
+
+			.header-nav a:hover {
+				color: var(--quanskill-orange);
+			}
+
+			.main-content {
+				padding: 70px 2rem 3rem;
+				max-width: 1000px;
+				margin: 0 auto;
+			}
+
+			/* Hero */
+			.hero {
+				background: var(--gradient-blue);
+				color: white;
+				padding: 2.5rem;
+				border-radius: 16px;
+				margin-bottom: 2rem;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.hero::before {
+				content: "";
+				position: absolute;
+				top: -50%;
+				right: -20%;
+				width: 300px;
+				height: 300px;
+				background: var(--quanskill-orange);
+				border-radius: 50%;
+				opacity: 0.1;
+			}
+
+			.hero-badge {
+				display: inline-block;
+				background: var(--quanskill-orange);
+				color: white;
+				padding: 0.3rem 0.9rem;
+				border-radius: 20px;
+				font-family: "Space Grotesk", sans-serif;
+				font-size: 0.75rem;
+				font-weight: 600;
+				margin-bottom: 0.75rem;
+			}
+
+			.hero h1 {
+				font-family: "Space Grotesk", sans-serif;
+				font-size: 2rem;
+				font-weight: 700;
+				margin-bottom: 0.75rem;
+				line-height: 1.2;
+				position: relative;
+			}
+
+			.hero h1 .highlight {
+				color: var(--quanskill-orange);
+			}
+
+			.hero-subtitle {
+				font-size: 1rem;
+				opacity: 0.9;
+				max-width: 600px;
+				line-height: 1.6;
+				position: relative;
+			}
+
+			.hero-stats {
+				display: flex;
+				gap: 2rem;
+				margin-top: 1.5rem;
+				flex-wrap: wrap;
+				position: relative;
+			}
+
+			.hero-stat {
+				text-align: center;
+				background: rgba(255, 255, 255, 0.1);
+				padding: 0.75rem 1.25rem;
+				border-radius: 10px;
+			}
+
+			.hero-stat-value {
+				font-family: "JetBrains Mono", monospace;
+				font-size: 1.5rem;
+				font-weight: 700;
+				color: var(--quanskill-orange);
+				display: block;
+			}
+
+			.hero-stat-label {
+				font-family: "Space Grotesk", sans-serif;
+				font-size: 0.7rem;
+				opacity: 0.85;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+			}
+
+			/* Sections */
+			.section {
+				background: var(--bg-card);
+				border-radius: 14px;
+				padding: 1.75rem;
+				margin-bottom: 1.5rem;
+				border: 1px solid var(--border-color);
+				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+			}
+
+			.section-header {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+				margin-bottom: 1rem;
+				padding-bottom: 0.75rem;
+				border-bottom: 2px solid var(--border-color);
+			}
+
+			.section-icon {
+				width: 40px;
+				height: 40px;
+				background: var(--gradient-orange);
+				border-radius: 10px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.2rem;
+			}
+
+			.section-header h2 {
+				font-family: "Space Grotesk", sans-serif;
+				font-size: 1.3rem;
+				font-weight: 600;
+				color: var(--quanskill-blue);
+			}
+
+			/* Career Cards */
+			.pathway-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+				gap: 1rem;
+				margin-top: 1rem;
+			}
+
+			.pathway-card {
+				background: var(--code-bg);
+				border-radius: 12px;
+				padding: 1.25rem;
+				border: 1px solid var(--border-color);
+				transition: all 0.3s;
+				cursor: pointer;
+			}
+
+			.pathway-card:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 8px 25px rgba(11, 47, 160, 0.12);
+				border-color: var(--quanskill-blue);
+			}
+
+			.pathway-icon {
+				font-size: 1.75rem;
+				margin-bottom: 0.5rem;
+			}
+
+			.pathway-card h3 {
+				font-family: "Space Grotesk", sans-serif;
+				font-size: 0.95rem;
+				font-weight: 600;
+				color: var(--quanskill-blue);
+				margin-bottom: 0.35rem;
+			}
+
+			.pathway-card p {
+				color: var(--text-secondary);
+				font-size: 0.8rem;
+				line-height: 1.5;
+			}
+
+			.pathway-tag {
+				display: inline-block;
+				background: rgba(11, 47, 160, 0.1);
+				color: var(--quanskill-blue);
+				padding: 0.2rem 0.6rem;
+				border-radius: 12px;
+				font-family: "Space Grotesk", sans-serif;
+				font-size: 0.7rem;
+				font-weight: 600;
+				margin-top: 0.5rem;
+			}
+
+			.pathway-tag.hot {
+				background: rgba(255, 144, 0, 0.15);
+				color: var(--quanskill-orange-dark);
+			}
+
+			/* Why Math */
+			.math-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 1rem;
+				margin-top: 1rem;
+			}
+
+			.math-item {
+				display: flex;
+				gap: 0.75rem;
+				padding: 1rem;
+				background: var(--code-bg);
+				border-radius: 10px;
+				border-left: 3px solid var(--quanskill-orange);
+			}
+
+			.math-item-icon {
+				font-size: 1.3rem;
+				flex-shrink: 0;
+			}
+
+			.math-item h4 {
+				font-family: "Space Grotesk", sans-serif;
+				font-size: 0.9rem;
+				font-weight: 600;
+				color: var(--quanskill-blue);
+				margin-bottom: 0.2rem;
+			}
+
+			.math-item p {
+				color: var(--text-secondary);
+				font-size: 0.8rem;
+				line-height: 1.5;
+			}
+
+			/* Quanskill Pathway */
+			.quanskill-box {
+				background: var(--gradient-blue);
+				color: white;
+				padding: 2rem;
+				border-radius: 14px;
+				margin-bottom: 1.5rem;
+				position: relative;
+				overflow: hidden;
+			}
+
+			.quanskill-box::before {
+				content: "";
+				position: absolute;
+				top: -50px;
+				right: -50px;
+				width: 150px;
+				height: 150px;
+				background: var(--quanskill-orange);
+				border-radius: 50%;
+				opacity: 0.15;
+			}
+
+			.quanskill-box h2 {
+				font-family: "Space Grotesk", sans-serif;
+				font-size: 1.3rem;
+				font-weight: 700;
+				margin-bottom: 0.5rem;
+				position: relative;
+			}
+
+			.quanskill-box > p {
+				font-size: 0.9rem;
+				opacity: 0.9;
+				margin-bottom: 1.5rem;
+				position: relative;
+			}
+
+			.pathway-steps {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 0.75rem;
+				position: relative;
+			}
+
+			.pathway-step {
+				background: rgba(255, 255, 255, 0.1);
+				padding: 1rem;
+				border-radius: 10px;
+				text-align: center;
+			}
+
+			.pathway-step-num {
+				width: 28px;
+				height: 28px;
+				background: var(--quanskill-orange);
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: "Space Grotesk", sans-serif;
+				font-weight: 700;
+				font-size: 0.85rem;
+				margin: 0 auto 0.5rem;
+			}
+
+			.pathway-step h4 {
+				font-family: "Space Grotesk", sans-serif;
+				font-size: 0.8rem;
+				font-weight: 600;
+				margin-bottom: 0.25rem;
+			}
+
+			.pathway-step p {
+				font-size: 0.7rem;
+				opacity: 0.8;
+			}
+
+			/* Roadmap Timeline */
+			.roadmap-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 0.75rem;
+				margin-top: 1rem;
+			}
+
+			.roadmap-item {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+				padding: 0.75rem 1rem;
+				background: var(--code-bg);
+				border-radius: 10px;
+				border: 1px solid var(--border-color);
+				transition: all 0.2s;
+			}
+
+			.roadmap-item:hover {
+				border-color: var(--quanskill-orange);
+				background: white;
+			}
+
+			.roadmap-icon {
+				width: 36px;
+				height: 36px;
+				background: var(--gradient-orange);
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1rem;
+				flex-shrink: 0;
+			}
+
+			.roadmap-content h4 {
+				font-family: "Space Grotesk", sans-serif;
+				font-size: 0.85rem;
+				font-weight: 600;
+				color: var(--quanskill-blue);
+			}
+
+			.roadmap-content p {
+				font-size: 0.75rem;
+				color: var(--text-secondary);
+			}
+
+			.roadmap-chapter {
+				background: var(--quanskill-blue);
+				color: white;
+				padding: 0.15rem 0.5rem;
+				border-radius: 8px;
+				font-family: "Space Grotesk", sans-serif;
+				font-size: 0.65rem;
+				font-weight: 600;
+				margin-left: auto;
+				flex-shrink: 0;
+			}
+
+			/* Trends */
+			.trends-grid {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 1rem;
+				margin-top: 1rem;
+			}
+
+			.trend-card {
+				background: var(--gradient-blue);
+				color: white;
+				padding: 1.25rem;
+				border-radius: 12px;
+				text-align: center;
+			}
+
+			.trend-card .value {
+				font-family: "JetBrains Mono", monospace;
+				font-size: 1.75rem;
+				font-weight: 700;
+				color: var(--quanskill-orange);
+				display: block;
+			}
+
+			.trend-card .label {
+				font-family: "Space Grotesk", sans-serif;
+				font-size: 0.75rem;
+				opacity: 0.9;
+			}
+
+			/* CTA */
+			.cta-box {
+				background: var(--gradient-orange);
+				color: white;
+				padding: 2rem;
+				border-radius: 14px;
+				text-align: center;
+				margin-top: 1.5rem;
+			}
+
+			.cta-box h2 {
+				font-family: "Space Grotesk", sans-serif;
+				font-size: 1.5rem;
+				font-weight: 700;
+				margin-bottom: 0.5rem;
+			}
+
+			.cta-box p {
+				font-size: 0.95rem;
+				opacity: 0.95;
+				margin-bottom: 1.25rem;
+			}
+
+			.chapter-links {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				justify-content: center;
+			}
+
+			.chapter-link {
+				background: rgba(255, 255, 255, 0.2);
+				padding: 0.5rem 1rem;
+				border-radius: 8px;
+				text-decoration: none;
+				color: white;
+				font-family: "Space Grotesk", sans-serif;
+				font-size: 0.8rem;
+				font-weight: 600;
+				transition: all 0.2s;
+			}
+
+			.chapter-link:hover {
+				background: white;
+				color: var(--quanskill-orange);
+			}
+
+			/* Quote */
+			.quote-box {
+				background: linear-gradient(
+					135deg,
+					rgba(11, 47, 160, 0.08) 0%,
+					rgba(255, 144, 0, 0.08) 100%
+				);
+				border-left: 4px solid var(--quanskill-orange);
+				padding: 1.25rem 1.5rem;
+				border-radius: 0 12px 12px 0;
+				margin: 1.5rem 0;
+			}
+
+			.quote-box p {
+				font-size: 1.05rem;
+				font-style: italic;
+				color: var(--text-primary);
+			}
+
+			.quote-box cite {
+				display: block;
+				margin-top: 0.5rem;
+				font-family: "Space Grotesk", sans-serif;
+				font-size: 0.8rem;
+				font-style: normal;
+				color: var(--quanskill-blue);
+				font-weight: 600;
+			}
+
+			/* Responsive */
+			@media (max-width: 768px) {
+				.hero h1 {
+					font-size: 1.5rem;
+				}
+				.hero-stats {
+					gap: 1rem;
+				}
+				.math-grid {
+					grid-template-columns: 1fr;
+				}
+				.pathway-steps {
+					grid-template-columns: repeat(2, 1fr);
+				}
+				.roadmap-grid {
+					grid-template-columns: 1fr;
+				}
+				.trends-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+				.header-nav {
+					display: none;
+				}
+			}
+
+			/* Floating Back to Main Button */
+			.floating-back-btn {
+				position: fixed;
+				top: 75px;
+				left: 15px;
+				background: linear-gradient(135deg, #0b2fa0 0%, #1a4fd0 100%);
+				color: white !important;
+				padding: 0.6rem 1.2rem;
+				border-radius: 25px;
+				text-decoration: none !important;
+				font-family: "Space Grotesk", sans-serif;
+				font-weight: 600;
+				font-size: 0.85rem;
+				z-index: 9999;
+				box-shadow: 0 4px 15px rgba(11, 47, 160, 0.3);
+				transition: all 0.3s ease;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+			.floating-back-btn:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 6px 20px rgba(11, 47, 160, 0.4);
+				background: linear-gradient(135deg, #ff9000 0%, #e68200 100%);
+			}
+			@media (max-width: 900px) {
+				.floating-back-btn {
+					top: auto;
+					bottom: 20px;
+					left: 15px;
+					right: auto;
+					padding: 0.5rem 1rem;
+					font-size: 0.8rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Floating Back to Main Page Button -->
+		<a href="index.html" class="floating-back-btn">← Main Page</a>
+
+		<header class="header">
+			<div class="header-content">
+				<div class="logo">
+					<img src="logowhite.png" alt="Quanskill" />
+				</div>
+				<nav class="header-nav">
+					<a href="#pathways">Careers</a>
+					<a href="#why-math">Why Math</a>
+					<a href="#roadmap">Roadmap</a>
+					<a href="#trends">Trends</a>
+					<a href="#start">Start</a>
+				</nav>
+			</div>
+		</header>
+
+		<main class="main-content">
+			<!-- Hero -->
+			<section class="hero">
+				<span class="hero-badge">📘 Chapter 1</span>
+				<h1>
+					Master <span class="highlight">Mathematics</span>, Build the
+					<span class="highlight">Future of AI</span>
+				</h1>
+				<p class="hero-subtitle">
+					Transform from aspiring learner to AI professional. Master the
+					mathematical foundations that power Data Science, Machine Learning,
+					and Agentic AI systems.
+				</p>
+				<div class="hero-stats">
+					<div class="hero-stat">
+						<span class="hero-stat-value">35%</span>
+						<span class="hero-stat-label">Job Growth by 2033</span>
+					</div>
+					<div class="hero-stat">
+						<span class="hero-stat-value">1.6M+</span>
+						<span class="hero-stat-label">Global ML Jobs</span>
+					</div>
+					<div class="hero-stat">
+						<span class="hero-stat-value">350%</span>
+						<span class="hero-stat-label">ML Role Growth</span>
+					</div>
+					<div class="hero-stat">
+						<span class="hero-stat-value">#4</span>
+						<span class="hero-stat-label">Best Tech Career</span>
+					</div>
+				</div>
+			</section>
+
+			<!-- Career Pathways -->
+			<section class="section" id="pathways">
+				<div class="section-header">
+					<div class="section-icon">🚀</div>
+					<h2>Career Pathways in AI & Data Science</h2>
+				</div>
+				<p>
+					The AI revolution is creating unprecedented career opportunities. Here
+					are the most in-demand roles:
+				</p>
+				<div class="pathway-grid">
+					<div class="pathway-card">
+						<div class="pathway-icon">🧠</div>
+						<h3>Data Scientist</h3>
+						<p>
+							Turn data into actionable insights using statistics, ML, and
+							domain expertise.
+						</p>
+						<span class="pathway-tag">High Demand</span>
+					</div>
+					<div class="pathway-card">
+						<div class="pathway-icon">âš™ï¸</div>
+						<h3>ML Engineer</h3>
+						<p>
+							Build, deploy, and optimize ML models at scale for production
+							systems.
+						</p>
+						<span class="pathway-tag hot">350% Growth</span>
+					</div>
+					<div class="pathway-card">
+						<div class="pathway-icon">🤓</div>
+						<h3>AI Engineer</h3>
+						<p>
+							Design intelligent systems, integrate LLMs, and build AI-powered
+							products.
+						</p>
+						<span class="pathway-tag hot">Hottest Role 2025</span>
+					</div>
+					<div class="pathway-card">
+						<div class="pathway-icon">🔔</div>
+						<h3>Agentic AI Developer</h3>
+						<p>
+							Build autonomous AI agents that reason, plan, and execute complex
+							tasks.
+						</p>
+						<span class="pathway-tag hot">🔥 Emerging</span>
+					</div>
+					<div class="pathway-card">
+						<div class="pathway-icon">🏔ï¸</div>
+						<h3>Data Engineer</h3>
+						<p>
+							Build the data infrastructure and pipelines that power AI systems.
+						</p>
+						<span class="pathway-tag">Foundation Role</span>
+					</div>
+					<div class="pathway-card">
+						<div class="pathway-icon">📊</div>
+						<h3>Data Analyst</h3>
+						<p>
+							Extract insights from data to drive business decisions. Gateway to
+							AI.
+						</p>
+						<span class="pathway-tag">Entry Point</span>
+					</div>
+					<div class="pathway-card">
+						<div class="pathway-icon">🔬</div>
+						<h3>AI Researcher</h3>
+						<p>
+							Push boundaries of what's possible. Develop new algorithms and
+							architectures.
+						</p>
+						<span class="pathway-tag">Elite Tier</span>
+					</div>
+					<div class="pathway-card">
+						<div class="pathway-icon">â˜ï¸</div>
+						<h3>MLOps Engineer</h3>
+						<p>
+							Operationalize ML at scale. CI/CD for models, monitoring,
+							automation.
+						</p>
+						<span class="pathway-tag hot">High Demand</span>
+					</div>
+				</div>
+			</section>
+
+			<!-- Why Mathematics -->
+			<section class="section" id="why-math">
+				<div class="section-header">
+					<div class="section-icon">📐</div>
+					<h2>Why Mathematics is Your Superpower</h2>
+				</div>
+				<div class="quote-box">
+					<p>
+						"Mathematics is the language in which God has written the universe."
+					</p>
+					<cite>— Galileo Galilei</cite>
+				</div>
+				<p>
+					In the age of AI, mathematics isn't just useful—it's essential. Every
+					breakthrough in machine learning is built on mathematical foundations.
+				</p>
+				<div class="math-grid">
+					<div class="math-item">
+						<div class="math-item-icon">🔍</div>
+						<div>
+							<h4>Understand, Don't Just Use</h4>
+							<p>
+								Math lets you understand WHY algorithms work, debug when they
+								fail, and innovate beyond existing tools.
+							</p>
+						</div>
+					</div>
+					<div class="math-item">
+						<div class="math-item-icon">🚀</div>
+						<div>
+							<h4>Career Differentiation</h4>
+							<p>
+								Mathematical fluency separates senior engineers from juniors—and
+								opens doors to top-tier positions.
+							</p>
+						</div>
+					</div>
+					<div class="math-item">
+						<div class="math-item-icon">🤓</div>
+						<div>
+							<h4>Build Agentic AI</h4>
+							<p>
+								Autonomous agents require probabilistic reasoning, optimization,
+								and decision theory.
+							</p>
+						</div>
+					</div>
+					<div class="math-item">
+						<div class="math-item-icon">🔮</div>
+						<div>
+							<h4>Future-Proof Your Skills</h4>
+							<p>
+								Frameworks change. APIs deprecate. Mathematical principles are
+								eternal.
+							</p>
+						</div>
+					</div>
+					<div class="math-item">
+						<div class="math-item-icon">📊</div>
+						<div>
+							<h4>Read Research Papers</h4>
+							<p>
+								AI moves fast. Math fluency lets you read and implement
+								cutting-edge research.
+							</p>
+						</div>
+					</div>
+					<div class="math-item">
+						<div class="math-item-icon">💡</div>
+						<div>
+							<h4>Innovate & Create</h4>
+							<p>
+								Every major AI breakthrough—transformers, GANs, diffusion—came
+								from mathematical insight.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Quanskill Pathway -->
+			<div class="quanskill-box">
+				<h2>🎓 The Quanskill Learning Pathway</h2>
+				<p>
+					Our structured curriculum takes you from mathematical foundations to
+					building production-ready AI agents.
+				</p>
+				<div class="pathway-steps">
+					<div class="pathway-step">
+						<div class="pathway-step-num">1</div>
+						<h4>Math Foundations</h4>
+						<p>Linear Algebra, Calculus, Probability</p>
+					</div>
+					<div class="pathway-step">
+						<div class="pathway-step-num">2</div>
+						<h4>Core ML</h4>
+						<p>Regression, PCA, GMM, SVM</p>
+					</div>
+					<div class="pathway-step">
+						<div class="pathway-step-num">3</div>
+						<h4>Applied AI</h4>
+						<p>NLP, Vision, Deep Learning</p>
+					</div>
+					<div class="pathway-step">
+						<div class="pathway-step-num">4</div>
+						<h4>Agentic AI</h4>
+						<p>LangChain, Multi-Agent, MCP</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Learning Roadmap -->
+			<section class="section" id="roadmap">
+				<div class="section-header">
+					<div class="section-icon">🗺ï¸</div>
+					<h2>Your Mathematics Learning Roadmap</h2>
+				</div>
+				<p>
+					Follow this sequence. Each chapter builds on the previous, creating a
+					solid foundation for advanced AI work.
+				</p>
+				<div class="roadmap-grid">
+					<div class="roadmap-item">
+						<div class="roadmap-icon">📐</div>
+						<div class="roadmap-content">
+							<h4>Linear Algebra</h4>
+							<p>Vectors, matrices, transformations</p>
+						</div>
+						<span class="roadmap-chapter">Ch 2</span>
+					</div>
+					<div class="roadmap-item">
+						<div class="roadmap-icon">🔢</div>
+						<div class="roadmap-content">
+							<h4>Matrix Decompositions</h4>
+							<p>SVD, eigendecomposition, Cholesky</p>
+						</div>
+						<span class="roadmap-chapter">Ch 4</span>
+					</div>
+					<div class="roadmap-item">
+						<div class="roadmap-icon">📈</div>
+						<div class="roadmap-content">
+							<h4>Vector Calculus</h4>
+							<p>Gradients, Jacobians, Hessians</p>
+						</div>
+						<span class="roadmap-chapter">Ch 5</span>
+					</div>
+					<div class="roadmap-item">
+						<div class="roadmap-icon">🏠</div>
+						<div class="roadmap-content">
+							<h4>Probability & Distributions</h4>
+							<p>Bayes, Gaussian, expectations</p>
+						</div>
+						<span class="roadmap-chapter">Ch 6</span>
+					</div>
+					<div class="roadmap-item">
+						<div class="roadmap-icon">âš¡</div>
+						<div class="roadmap-content">
+							<h4>Continuous Optimization</h4>
+							<p>Gradient descent, convexity</p>
+						</div>
+						<span class="roadmap-chapter">Ch 7</span>
+					</div>
+					<div class="roadmap-item">
+						<div class="roadmap-icon">🎯</div>
+						<div class="roadmap-content">
+							<h4>When Models Meet Data</h4>
+							<p>Bias-variance, regularization</p>
+						</div>
+						<span class="roadmap-chapter">Ch 8</span>
+					</div>
+					<div class="roadmap-item">
+						<div class="roadmap-icon">📊</div>
+						<div class="roadmap-content">
+							<h4>Linear Regression</h4>
+							<p>MLE, MAP, Bayesian regression</p>
+						</div>
+						<span class="roadmap-chapter">Ch 9</span>
+					</div>
+					<div class="roadmap-item">
+						<div class="roadmap-icon">🔻</div>
+						<div class="roadmap-content">
+							<h4>Dimensionality Reduction</h4>
+							<p>PCA, variance maximization</p>
+						</div>
+						<span class="roadmap-chapter">Ch 10</span>
+					</div>
+					<div class="roadmap-item">
+						<div class="roadmap-icon">🚀</div>
+						<div class="roadmap-content">
+							<h4>Density Estimation</h4>
+							<p>GMM, EM algorithm</p>
+						</div>
+						<span class="roadmap-chapter">Ch 11</span>
+					</div>
+					<div class="roadmap-item">
+						<div class="roadmap-icon">âš”ï¸</div>
+						<div class="roadmap-content">
+							<h4>Classification (SVM)</h4>
+							<p>Margins, kernels, dual</p>
+						</div>
+						<span class="roadmap-chapter">Ch 12</span>
+					</div>
+				</div>
+			</section>
+
+			<!-- Global Trends -->
+			<section class="section" id="trends">
+				<div class="section-header">
+					<div class="section-icon">🎁</div>
+					<h2>Global AI/ML Career Trends 2025</h2>
+				</div>
+				<div class="trends-grid">
+					<div class="trend-card">
+						<span class="value">35%</span>
+						<span class="label">Job Growth (2022-2033)</span>
+					</div>
+					<div class="trend-card">
+						<span class="value">$503B</span>
+						<span class="label">ML Market by 2030</span>
+					</div>
+					<div class="trend-card">
+						<span class="value">77%</span>
+						<span class="label">AI Jobs Need ML Skills</span>
+					</div>
+					<div class="trend-card">
+						<span class="value">220K</span>
+						<span class="label">US Data Science Jobs</span>
+					</div>
+				</div>
+			</section>
+
+			<!-- CTA -->
+			<section class="cta-box" id="start">
+				<h2>🚀 Ready to Begin?</h2>
+				<p>
+					Start your journey through the Mathematics for Machine Learning
+					practice hubs.
+				</p>
+				<div class="chapter-links">
+					<a href="#" class="chapter-link">📐 Ch 2</a>
+					<a href="#" class="chapter-link">🔢 Ch 4</a>
+					<a href="#" class="chapter-link">📈 Ch 5</a>
+					<a href="#" class="chapter-link">🏠 Ch 6</a>
+					<a href="#" class="chapter-link">âš¡ Ch 7</a>
+					<a href="#" class="chapter-link">🎯 Ch 8</a>
+					<a href="#" class="chapter-link">📊 Ch 9</a>
+					<a href="#" class="chapter-link">🔻 Ch 10</a>
+					<a href="#" class="chapter-link">🚀 Ch 11</a>
+					<a href="#" class="chapter-link">âš”ï¸ Ch 12</a>
+				</div>
+			</section>
+
+			<!-- Final Quote -->
+			<div class="quote-box" style="margin-top: 1.5rem">
+				<p>
+					"The best time to plant a tree was 20 years ago. The second best time
+					is now."
+				</p>
+				<cite>— Chinese Proverb</cite>
+			</div>
+		</main>
+	</body>
 </html>
