@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Mathematics for Data Science and AI | Quanskill</title>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+			rel="stylesheet" />
+		<style>
+			:root {
+				--black: #0a0a0a;
+				--blue: #0b2fa0;
+				--blue-dark: #081f6b;
+				--blue-light: #1a4fd0;
+				--orange: #ff9000;
+				--orange-dark: #e68200;
+				--white: #ffffff;
+				--gray-50: #f8fafc;
+				--gray-100: #f1f5f9;
+				--gray-200: #e2e8f0;
+				--gray-600: #475569;
+				--gray-900: #0f172a;
+			}
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				font-family: "Space Grotesk", sans-serif;
+				background: var(--gray-50);
+				color: var(--gray-900);
+				min-height: 100vh;
+			}
+			.header {
+				background: var(--gray-900);
+				padding: 1rem 2rem;
+				position: sticky;
+				top: 0;
+				z-index: 100;
+			}
+			.header-inner {
+				max-width: 1400px;
+				margin: 0 auto;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+			.logo {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				color: var(--white);
+				font-weight: 700;
+				font-size: 1.5rem;
+			}
+			.logo img {
+				height: 50px;
+				border-radius: 8px;
+			}
+			.assessment-link {
+				background: var(--orange);
+				color: var(--white);
+				padding: 0.75rem 1.5rem;
+				border-radius: 50px;
+				text-decoration: none;
+				font-weight: 600;
+				font-size: 0.95rem;
+				transition: transform 0.2s, box-shadow 0.2s;
+			}
+			.assessment-link:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 4px 15px rgba(255, 144, 0, 0.4);
+			}
+			.hero {
+				background: linear-gradient(
+					135deg,
+					var(--blue) 0%,
+					var(--blue-light) 100%
+				);
+				color: var(--white);
+				padding: 4rem 2rem;
+				text-align: center;
+			}
+			.hero h1 {
+				font-size: 3rem;
+				font-weight: 700;
+				margin-bottom: 1rem;
+			}
+			.hero h1 span {
+				color: var(--orange);
+			}
+			.hero p {
+				font-size: 1.25rem;
+				opacity: 0.9;
+				max-width: 600px;
+				margin: 0 auto;
+			}
+			.main {
+				max-width: 1400px;
+				margin: 0 auto;
+				padding: 3rem 2rem;
+			}
+			.chapter-row {
+				display: grid;
+				grid-template-columns: 60px 1fr 1fr;
+				gap: 1rem;
+				margin-bottom: 1rem;
+				align-items: stretch;
+			}
+			.chapter-num {
+				background: var(--blue);
+				color: var(--white);
+				border-radius: 12px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-family: "JetBrains Mono", monospace;
+				font-weight: 700;
+				font-size: 1.1rem;
+				min-height: 80px;
+			}
+			.card {
+				background: var(--white);
+				border-radius: 12px;
+				padding: 1.25rem 1.5rem;
+				text-decoration: none;
+				color: var(--gray-900);
+				transition: all 0.25s ease;
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				border: 2px solid transparent;
+				min-height: 80px;
+			}
+			.card:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+			}
+			.card.theory {
+				border-left: 4px solid var(--blue);
+			}
+			.card.theory:hover {
+				border-color: var(--blue);
+				background: linear-gradient(
+					90deg,
+					rgba(11, 47, 160, 0.03) 0%,
+					var(--white) 100%
+				);
+			}
+			.card.theory .icon {
+				width: 50px;
+				height: 50px;
+				background: linear-gradient(
+					135deg,
+					var(--blue) 0%,
+					var(--blue-light) 100%
+				);
+				border-radius: 10px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.5rem;
+				flex-shrink: 0;
+			}
+			.card.practice {
+				border-left: 4px solid var(--orange);
+			}
+			.card.practice:hover {
+				border-color: var(--orange);
+				background: linear-gradient(
+					90deg,
+					rgba(255, 144, 0, 0.05) 0%,
+					var(--white) 100%
+				);
+			}
+			.card.practice .icon {
+				width: 50px;
+				height: 50px;
+				background: linear-gradient(
+					135deg,
+					var(--orange) 0%,
+					var(--orange-dark) 100%
+				);
+				border-radius: 10px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.5rem;
+				flex-shrink: 0;
+			}
+			.card-content h3 {
+				font-size: 1rem;
+				font-weight: 600;
+				margin-bottom: 0.25rem;
+			}
+			.card-content p {
+				font-size: 0.85rem;
+				color: var(--gray-600);
+			}
+			.column-headers {
+				display: grid;
+				grid-template-columns: 60px 1fr 1fr;
+				gap: 1rem;
+				margin-bottom: 1.5rem;
+				padding-bottom: 1rem;
+				border-bottom: 2px solid var(--gray-200);
+			}
+			.column-header {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+				font-weight: 700;
+				font-size: 1.1rem;
+			}
+			.column-header.theory-header {
+				color: var(--blue);
+			}
+			.column-header.practice-header {
+				color: var(--orange);
+			}
+			.header-icon {
+				width: 36px;
+				height: 36px;
+				border-radius: 8px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.2rem;
+			}
+			.header-icon.blue {
+				background: rgba(11, 47, 160, 0.1);
+			}
+			.header-icon.orange {
+				background: rgba(255, 144, 0, 0.15);
+			}
+			.card.empty {
+				background: var(--gray-100);
+				border: 2px dashed var(--gray-200);
+				color: var(--gray-600);
+				justify-content: center;
+				pointer-events: none;
+			}
+			.assessment-section {
+				margin-top: 3rem;
+				background: linear-gradient(
+					135deg,
+					var(--blue) 0%,
+					var(--blue-light) 50%,
+					var(--orange) 100%
+				);
+				border-radius: 20px;
+				padding: 3rem;
+				color: var(--white);
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 2rem;
+			}
+			.assessment-section h2 {
+				font-size: 1.75rem;
+				margin-bottom: 0.5rem;
+			}
+			.assessment-section p {
+				opacity: 0.9;
+				font-size: 1.1rem;
+			}
+			.assessment-btn {
+				background: var(--white);
+				color: var(--blue);
+				padding: 1rem 2.5rem;
+				border-radius: 50px;
+				text-decoration: none;
+				font-weight: 700;
+				font-size: 1.1rem;
+				transition: transform 0.2s, box-shadow 0.2s;
+				white-space: nowrap;
+			}
+			.assessment-btn:hover {
+				transform: scale(1.05);
+				box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+			}
+			@media (max-width: 900px) {
+				.chapter-row {
+					grid-template-columns: 1fr;
+					gap: 0.75rem;
+				}
+				.chapter-num {
+					min-height: auto;
+					padding: 0.75rem;
+					border-radius: 8px;
+				}
+				.column-headers {
+					display: none;
+				}
+				.hero h1 {
+					font-size: 2rem;
+				}
+				.assessment-section {
+					flex-direction: column;
+					text-align: center;
+				}
+			}
+			@media (max-width: 600px) {
+				.header {
+					padding: 0.75rem 1rem;
+				}
+				.logo {
+					font-size: 1.2rem;
+				}
+				.logo img {
+					height: 32px;
+				}
+				.assessment-link {
+					padding: 0.5rem 1rem;
+					font-size: 0.85rem;
+				}
+				.hero {
+					padding: 2.5rem 1rem;
+				}
+				.main {
+					padding: 1.5rem 1rem;
+				}
+				.card {
+					padding: 1rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header class="header">
+			<div class="header-inner">
+				<div class="logo"><img src="logowhite.png" alt="Quanskill" /></div>
+				<a href="final_appraisal.html" class="assessment-link"
+					>📝 Final Assessment</a
+				>
+			</div>
+		</header>
+		<section class="hero">
+			<h1>Mathematics for <span>Data Science and AI</span></h1>
+			<p>Master the mathematical foundations that power modern AI</p>
+		</section>
+		<main class="main">
+			<div class="column-headers">
+				<div class="spacer"></div>
+				<div class="column-header theory-header">
+					<span class="header-icon blue">📖</span>Theory
+				</div>
+				<div class="column-header practice-header">
+					<span class="header-icon orange">🧪</span>Practice Lab
+				</div>
+			</div>
+			<div class="chapter-row">
+				<div class="chapter-num">01</div>
+				<a href="chapter1_welcome_hub__1_.html" class="card theory"
+					><div class="icon">📖</div>
+					<div class="card-content">
+						<h3>Introduction & Welcome</h3>
+						<p>Your journey to AI mastery begins here</p>
+					</div></a
+				>
+				<div class="card empty"><span>—</span></div>
+			</div>
+			<div class="chapter-row">
+				<div class="chapter-num">02</div>
+				<a href="linear-algebra-chapter2__3_.html" class="card theory"
+					><div class="icon">📖</div>
+					<div class="card-content">
+						<h3>Linear Algebra</h3>
+						<p>Vectors, matrices & linear mappings</p>
+					</div></a
+				><a href="linear_algebra_practice_hub__1_.html" class="card practice"
+					><div class="icon">🧪</div>
+					<div class="card-content">
+						<h3>Linear Algebra Lab</h3>
+						<p>Hands-on vector & matrix exercises</p>
+					</div></a
+				>
+			</div>
+			<div class="chapter-row">
+				<div class="chapter-num">03</div>
+				<a href="chapter3_analytic_geometry.html" class="card theory"
+					><div class="icon">📖</div>
+					<div class="card-content">
+						<h3>Analytic Geometry</h3>
+						<p>Norms, inner products & orthogonality</p>
+					</div></a
+				><a href="chapter3_analytic_geometry_hub.html" class="card practice"
+					><div class="icon">🧪</div>
+					<div class="card-content">
+						<h3>Analytic Geometry Lab</h3>
+						<p>Geometric concepts in practice</p>
+					</div></a
+				>
+			</div>
+			<div class="chapter-row">
+				<div class="chapter-num">04</div>
+				<a href="matrix-decompositions-chapter4.html" class="card theory"
+					><div class="icon">📖</div>
+					<div class="card-content">
+						<h3>Matrix Decompositions</h3>
+						<p>Eigenvalues, SVD & applications</p>
+					</div></a
+				><a href="matrix_decomposition_practice_hub.html" class="card practice"
+					><div class="icon">🧪</div>
+					<div class="card-content">
+						<h3>Matrix Decomposition Lab</h3>
+						<p>Implement decomposition algorithms</p>
+					</div></a
+				>
+			</div>
+			<div class="chapter-row">
+				<div class="chapter-num">05</div>
+				<a href="vector-calculus-chapter5.html" class="card theory"
+					><div class="icon">📖</div>
+					<div class="card-content">
+						<h3>Vector Calculus</h3>
+						<p>Gradients, Jacobians & Hessians</p>
+					</div></a
+				><a href="vector_calculus_practice_hub.html" class="card practice"
+					><div class="icon">🧪</div>
+					<div class="card-content">
+						<h3>Vector Calculus Lab</h3>
+						<p>Compute gradients & optimize</p>
+					</div></a
+				>
+			</div>
+			<div class="chapter-row">
+				<div class="chapter-num">06</div>
+				<a href="probability-distributions-chapter6.html" class="card theory"
+					><div class="icon">📖</div>
+					<div class="card-content">
+						<h3>Probability & Distributions</h3>
+						<p>Random variables & statistics</p>
+					</div></a
+				><a
+					href="probability_distributions_practice_hub.html"
+					class="card practice"
+					><div class="icon">🧪</div>
+					<div class="card-content">
+						<h3>Probability Lab</h3>
+						<p>Work with distributions</p>
+					</div></a
+				>
+			</div>
+			<div class="chapter-row">
+				<div class="chapter-num">07</div>
+				<a href="continuous-optimization-chapter7.html" class="card theory"
+					><div class="icon">📖</div>
+					<div class="card-content">
+						<h3>Continuous Optimization</h3>
+						<p>Gradient descent & convexity</p>
+					</div></a
+				><a
+					href="continuous_optimization_practice_hub.html"
+					class="card practice"
+					><div class="icon">🧪</div>
+					<div class="card-content">
+						<h3>Optimization Lab</h3>
+						<p>Implement optimization algorithms</p>
+					</div></a
+				>
+			</div>
+			<div class="chapter-row">
+				<div class="chapter-num">08</div>
+				<a href="ml_models_data__2_.html" class="card theory"
+					><div class="icon">📖</div>
+					<div class="card-content">
+						<h3>When Models Meet Data</h3>
+						<p>Empirical risk & learning theory</p>
+					</div></a
+				><a href="when_models_meet_data_practice_hub.html" class="card practice"
+					><div class="icon">🧪</div>
+					<div class="card-content">
+						<h3>Models & Data Lab</h3>
+						<p>Connect theory to practice</p>
+					</div></a
+				>
+			</div>
+			<div class="chapter-row">
+				<div class="chapter-num">09</div>
+				<a href="linear_regression.html" class="card theory"
+					><div class="icon">📖</div>
+					<div class="card-content">
+						<h3>Linear Regression</h3>
+						<p>Least squares & regularization</p>
+					</div></a
+				><a href="linear_regression_practice_hub.html" class="card practice"
+					><div class="icon">🧪</div>
+					<div class="card-content">
+						<h3>Linear Regression Lab</h3>
+						<p>Build predictive models</p>
+					</div></a
+				>
+			</div>
+			<div class="chapter-row">
+				<div class="chapter-num">10</div>
+				<a href="dimensionality_reduction.html" class="card theory"
+					><div class="icon">📖</div>
+					<div class="card-content">
+						<h3>Dimensionality Reduction</h3>
+						<p>PCA & feature extraction</p>
+					</div></a
+				><a href="pca_practice_hub.html" class="card practice"
+					><div class="icon">🧪</div>
+					<div class="card-content">
+						<h3>PCA Lab</h3>
+						<p>Reduce dimensions in practice</p>
+					</div></a
+				>
+			</div>
+			<div class="chapter-row">
+				<div class="chapter-num">11</div>
+				<a href="density_estimation.html" class="card theory"
+					><div class="icon">📖</div>
+					<div class="card-content">
+						<h3>Density Estimation</h3>
+						<p>Gaussian Mixtures & EM algorithm</p>
+					</div></a
+				><a href="gmm_practice_hub.html" class="card practice"
+					><div class="icon">🧪</div>
+					<div class="card-content">
+						<h3>GMM Lab</h3>
+						<p>Cluster with Gaussian mixtures</p>
+					</div></a
+				>
+			</div>
+			<div class="chapter-row">
+				<div class="chapter-num">12</div>
+				<a href="classification_svm.html" class="card theory"
+					><div class="icon">📖</div>
+					<div class="card-content">
+						<h3>Classification (SVM)</h3>
+						<p>Support vectors & kernels</p>
+					</div></a
+				><a href="svm_practice_hub.html" class="card practice"
+					><div class="icon">🧪</div>
+					<div class="card-content">
+						<h3>SVM Lab</h3>
+						<p>Train classifiers & explore kernels</p>
+					</div></a
+				>
+			</div>
+			<section class="assessment-section">
+				<div>
+					<h2>🎯 Ready to Test Your Knowledge?</h2>
+					<p>Take the comprehensive final assessment</p>
+				</div>
+				<a href="final_appraisal.html" class="assessment-btn"
+					>Start Assessment →</a
+				>
+			</section>
+		</main>
+	</body>
+</html>
